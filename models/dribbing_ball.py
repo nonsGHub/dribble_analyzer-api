@@ -6,10 +6,14 @@ import cv2
 from ultralytics import YOLO
 import mediapipe as mp
 import io
+import os
 
-# โหลดโมเดล
-model_yolo = YOLO("C:/Users/1234n/basketballPJ/models/best.pt")
-pose = mp.solutions.pose.Pose() # type: ignore
+# โหลดโมเดลแบบ relative path ที่ปลอดภัยข้ามเครื่อง
+BASE_DIR = os.path.dirname(__file__)
+MODEL_PATH = os.path.join(BASE_DIR, "best.pt")
+model_yolo = YOLO(MODEL_PATH)
+
+pose = mp.solutions.pose.Pose()  # type: ignore
 
 app = FastAPI()
 
